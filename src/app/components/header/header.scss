@@ -2,11 +2,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #00A859; /* Verde padrão Eco */
+  background-color: #00A859; 
   color: white;
   padding: 0 40px;
   height: 80px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000; 
 }
 
 .logo-container {
