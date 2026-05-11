@@ -1,0 +1,53 @@
+.eco-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00A859; /* Verde padrão Eco */
+  color: white;
+  padding: 0 40px;
+  height: 80px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 32px;
+}
+
+.logo-text {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding-bottom: 5px;
+  transition: opacity 0.3s;
+}
+
+.nav-menu a:hover {
+  opacity: 0.8;
+}
+
+/* Detalhe da linha branca embaixo do item ativo no Figma */
+.nav-menu a.active {
+  border-bottom: 2px solid white;
+}
