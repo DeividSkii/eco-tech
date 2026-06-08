@@ -1,0 +1,246 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  scroll-behavior: smooth; 
+}
+/* ==================================================
+   SEÇÃO: O QUE DOAR (ECO-TECH)
+   ================================================== */
+
+/* Área geral da seção */
+.doacao-section {
+  padding: 80px 20px;
+  background-color: #f9f9f9; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* Cabeçalho da seção */
+.doacao-header {
+  text-align: center;
+  margin-bottom: 70px; 
+
+  h2 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 18px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* A Grade (CSS Grid) */
+.doacao-grid {
+  display: grid;
+  
+  /* Força exatamente 4 colunas de tamanhos iguais no PC */
+  grid-template-columns: repeat(4, 1fr);
+  
+  /* Espaçamento: 50px entre as linhas e 25px entre as colunas */
+  gap: 50px 25px; 
+  margin-bottom: 50px;
+
+  /* Responsividade: Tablet (Telas até 900px) */
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr); /* Muda para 2 colunas */
+  }
+
+  /* Responsividade: Celular (Telas até 600px) */
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr; /* Muda para 1 coluna */
+  }
+}
+
+/* O Card individual */
+.doacao-card {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 168, 89, 0.15); 
+    border-color: #00A859;
+  }
+
+  .card-img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain; 
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 18px;
+    color: #222;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.5;
+    margin: 0; 
+  }
+}
+.contato-section {
+  padding: 100px 20px;
+  background-color: #ffffff;
+  
+  /* A imagem de fundo dos circuitos */
+  background-image: url('/assets/fundo.png');
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 55% auto; 
+  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+.contato-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centraliza todo o bloco na tela */
+  gap: 80px; /* Distância harmônica entre texto e imagem */
+
+  @media (max-width: 992px) {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 40px;
+  }
+}
+
+.contato-conteudo {
+  width: 100%;
+  max-width: 500px; /* Largura ideal para bater de frente com o ícone */
+
+  h2 {
+    font-size: 42px;
+    color: #333333;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+
+  .contato-subtitulo {
+    font-size: 18px;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+}
+
+.contato-info-box {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 16px;
+  padding: 35px 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 992px) {
+    text-align: center;
+  }
+
+  p {
+    font-size: 15px;
+    color: #555555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #00A859;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 15px 35px; /* Tamanho meio-termo equilibrado */
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 168, 89, 0.2);
+  cursor: pointer;
+
+  &:hover {
+    background-color: #008f4c;
+    transform: translateY(-2px);
+  }
+}
+
+.contato-detalhes {
+  margin-top: 30px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 20px;
+
+  p {
+    font-size: 15px;
+    color: #444444;
+    margin-bottom: 12px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: #222222;
+    }
+  }
+}
+
+.contato-imagem {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .img-3d {
+    max-width: 100%;
+    height: auto;
+    max-height: 380px;
+    animation: flutuar3D 4s ease-in-out infinite;
+  }
+}
+
+/* Animação flutuante do ícone 3D */
+@keyframes flutuar3D {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
