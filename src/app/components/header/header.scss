@@ -35,6 +35,7 @@
   gap: 40px;
   margin: 0;
   padding: 0;
+  position: relative; /* Trava a linha mágica dentro deste menu */
 }
 
 .nav-menu a {
@@ -50,7 +51,15 @@
   opacity: 0.8;
 }
 
-/* Detalhe da linha branca embaixo do item ativo no Figma */
-.nav-menu a.active {
-  border-bottom: 2px solid white;
+/* =========================================
+   A LINHA MÁGICA ANIMADA
+   ========================================= */
+.linha-magica {
+  position: absolute;
+  bottom: 0; 
+  height: 2px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out; 
+ 
 }

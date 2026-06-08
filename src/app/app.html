@@ -3,23 +3,108 @@
 <main>
 
   <section id="inicio">
-    <h2 style="color: #666;">O Mapa entra aqui</h2>
+    <app-map></app-map>
   </section>
 
   <section id="sobre" style="padding: 80px 40px; background-color: #fff; text-align: center;">
     <h2 style="color: #00A859;">Sobre o Projeto:</h2>
     <p style="color: #555; max-width: 800px; margin: 0 auto; line-height: 1.6;">
-      O Eco-Tech é um projeto de extensão que facilita o acesso a locais de doação de equipamentos eletrônicos. 
-      A plataforma permite encontrar pontos próximos, visualizar o que cada local aceita e contribuir com o descarte correto.
+      O Eco-Tech é uma iniciativa desenvolvida por estudantes do curso de Sistemas de Informação da Unex para a disciplina de Projeto de Interface Web. 
+      Decidimos criar esta plataforma com um propósito claro: conscientizar a comunidade e oferecer uma maneira simples e acessível de divulgar o descarte adequado de lixo eletrônico em Feira de Santana, conectando pessoas aos pontos de coleta corretos.
     </p>
   </section>
 
-  <section id="doacao" style="padding: 80px 40px; background-color: #f5f5f5; min-height: 400px;">
-    <h2 style="text-align: center; color: #00A859;"> O que você pode doar?</h2>
+  <section id="doacao" class="doacao-section">
+    <div class="container">
+      <div class="doacao-header">
+        <h2>O que doar?</h2>
+        <p>Aceitamos diversos tipos de equipamentos eletrônicos para recondicionamento e descarte correto.</p>
+      </div>
+
+      <div class="doacao-grid">
+        
+        <div class="doacao-card">
+          <img src="/assets/monitor.png" alt="Monitores e Telas" class="card-img">
+          <h3>Monitores & Telas</h3>
+          <p>Telas LCD, LED e Monitores antigos.</p>
+        </div>
+
+        <div class="doacao-card">
+          <img src="/assets/gabinete.png" alt="Computadores" class="card-img">
+          <h3>Computadores</h3>
+          <p>Desktops, Servidores, All-in-ones.</p>
+        </div>
+        
+        <div class="doacao-card">
+          <img src="/assets/notebook.png" alt="Notebooks" class="card-img">
+          <h3>Notebooks</h3>
+          <p>Laptops e Notebooks.</p>
+        </div>
+
+        <div class="doacao-card">
+          <img src="/assets/celular.png" alt="Celulares" class="card-img">
+          <h3>Celulares & Tablets</h3>
+          <p>Smartphones e Tablets.</p>
+        </div>
+        
+        <div class="doacao-card">
+          <img src="/assets/hardware.png" alt="Peças de Hardware" class="card-img">
+          <h3>Peças de Hardware</h3>
+          <p>Placas-mãe, Processadores, RAM, Placas de vídeo</p>
+        </div>
+
+        <div class="doacao-card">
+          <img src="/assets/rede.png" alt="Equipamentos de Rede" class="card-img">
+          <h3>Equipamentos de Rede</h3>
+          <p>Roteadores, Switchs & Cabos</p>
+        </div>
+
+        <div class="doacao-card">
+          <img src="/assets/acessorios.png" alt="Acessorios" class="card-img">
+          <h3>Acessórios</h3>
+          <p>Teclados, Fones, Mouses e Adaptadores</p>
+        </div>
+        
+        <div class="doacao-card">
+          <img src="/assets/impressora.png" alt="Impressoras" class="card-img">
+          <h3>Impressoras</h3>
+          <p>Impressoras</p>
+        </div>
+
+      </div>
+    </div>  
   </section>
 
-  <section id="contato" style="padding: 80px 40px; background-color: #333; color: white; min-height: 300px; text-align: center;">
-    <h2>Fale Conosco</h2>
+<section id="contato" class="contato-section">
+    <div class="container">
+      <div class="contato-wrapper">
+        
+        <div class="contato-conteudo">
+          <h2>Fale Conosco</h2>
+          <p class="contato-subtitulo">
+            Tem dúvidas sobre pontos de coleta ou quer saber mais sobre o projeto Eco-Tech? 
+            Entre em contato com nossa equipe de estudantes da Unex!
+          </p>
+          
+          <div class="contato-info-box">
+            <p>Se você é um cidadão querendo descartar, ou uma empresa querendo se tornar um ponto de coleta, estamos aqui para ouvir e colaborar!</p>
+            
+            <a href="https://wa.me/5575999999999" target="_blank" class="btn-whatsapp">
+              Enviar Mensagem no WhatsApp
+            </a>
+            
+            <div class="contato-detalhes">
+              <p><strong>Email:</strong> contato@ecotech.unex.edu.br</p>
+              <p><strong>Localização:</strong> Campus Unex Feira de Santana</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contato-imagem">
+          <img src="assets/icone-contato.png" alt="Eco-Tech Contato" class="img-3d">
+        </div>
+
+      </div>
+    </div>  
   </section>
 </main>
-<router-outlet></router-outlet>

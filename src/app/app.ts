@@ -1,11 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-// Importação corrigida: Puxando o HeaderComponent com o nome certo
 import { Header } from './components/header/header';
+import { MapComponent } from './components/map/map';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header],
+  imports: [Header, MapComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
