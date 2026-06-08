@@ -1,10 +1,20 @@
-import { Component, OnInit, Inject, PLATFORM_ID, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import type * as L from 'leaflet';
-// A linha "import { After } from 'node:v8';" foi removida daqui!
+
+// Uma interface para padronizar os dados vindos da api
+export interface PontoDeColeta {
+  id?: number | string; 
+  nome: string;
+  lat: number;
+  lng: number;
+  aceita: string;
+}
 
 @Component({
   selector: 'app-map',
+  standalone: true,
   imports: [],
   templateUrl: './map.html',
   styleUrl: './map.scss',
@@ -14,71 +24,83 @@ export class MapComponent implements AfterViewInit {
   @ViewChild('mapContainer') mapContainer!: ElementRef;
 
   private map!: L.Map;
+  private leaflet: any;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  private API_URL = 'http://localhost:3000/pontos'; 
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private http: HttpClient 
+  ) {}
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
-        this.iniciarMapa()
-      }, 100)
+        this.iniciarMapa();
+      }, 100);
     }
   }
 
   private async iniciarMapa() {
-    const leaflet = await import('leaflet');
+    this.leaflet = await import('leaflet');
     
     const centroDaCidade: L.LatLngExpression = [-12.266, -38.966];
 
-    this.map = leaflet.map(this.mapContainer.nativeElement).setView(centroDaCidade, 13);
+    this.map = this.leaflet.map(this.mapContainer.nativeElement).setView(centroDaCidade, 13);
     
-    leaflet.tileLayer('https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
+    this.leaflet.tileLayer('https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
       maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+      attribution: '© OpenStreetMap contributors © CARTO'
     }).addTo(this.map);
 
-    const iconePadrao = leaflet.icon({
+    // Busca os dados na API
+    this.buscarPontosDeColeta();
+
+    setTimeout(() => {
+      this.map.invalidateSize();
+    }, 100);
+  }
+
+ //Método GET para buscar dados na API
+  private buscarPontosDeColeta() {
+    this.http.get<PontoDeColeta[]>(this.API_URL).subscribe({
+      next: (pontos: PontoDeColeta[]) => {
+        // Se retornar sucesso, coloca os pontos no mapa
+        this.desenharMarcadores(pontos);
+      },
+      error: (erro: any) => {
+        console.error('Erro ao buscar pontos na API', erro);
+      }
+    });
+  }
+
+  //Método POST, adiciona um novo ponto na API
+  public adicionarNovoPonto(novoPonto: PontoDeColeta) {
+    this.http.post<PontoDeColeta>(this.API_URL, novoPonto).subscribe({
+      next: (pontoSalvo: PontoDeColeta) => {
+        alert('Ponto adicionado com sucesso!');
+        // Após salvar, desenhamos ele no mapa imediatamente
+        this.desenharMarcadores([pontoSalvo]); 
+      },
+      error: (erro: any) => {
+        console.error('Erro ao salvar o ponto', erro);
+      }
+    });
+  }
+
+  //Função para desenhar o marcador no mapa
+  private desenharMarcadores(pontos: PontoDeColeta[]) {
+    const iconePadrao = this.leaflet.icon({
       iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
       shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
     });
-    
-    const pontosDeColeta = [
-      { 
-        nome: 'Ecoponto Centro', 
-        coordenadas: [-12.266, -38.966] as L.LatLngExpression, 
-        aceita: 'Pilhas, Baterias e Celulares' 
-      },
-      { 
-        nome: 'Coleta Shopping Boulevard', 
-        coordenadas: [-12.253, -38.948] as L.LatLngExpression, 
-        aceita: 'Lixo Eletrônico em geral' 
-      },
-      { 
-        nome: 'Ponto de Descarte Norte', 
-        coordenadas: [-12.235, -38.970] as L.LatLngExpression, 
-        aceita: 'Computadores e Monitores' 
-      },
-      { 
-        nome: 'Eco-Tech Mangabeira', 
-        coordenadas: [-12.248, -38.930] as L.LatLngExpression, 
-        aceita: 'Cabos, Fontes e Placas' 
-      }
-    ];
 
-    // Aqui entra a mágica do botão do Maps!
-    // Aqui entra a mágica do botão do Maps!
-    pontosDeColeta.forEach(ponto => {
-      
-      // Avisamos ao TypeScript que isso é um array de 2 posições (Tupla)
-      const coords = ponto.coordenadas as [number, number];
-      const lat = coords[0];
-      const lng = coords[1];
-      
-      // Link oficial de rotas do Google Maps
-      const linkMaps = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+    pontos.forEach(ponto => {
+      // O link Maps oficial
+      const linkMaps = `https://www.google.com/maps/dir/?api=1&destination=${ponto.lat},${ponto.lng}`;
 
       const popUpConteudo = `
         <div style="text-align: center; font-family: sans-serif;">
@@ -100,13 +122,10 @@ export class MapComponent implements AfterViewInit {
         </div>
       `;
 
-      leaflet.marker(ponto.coordenadas, { icon: iconePadrao })
+      // Adicionando marcador
+      this.leaflet.marker([ponto.lat, ponto.lng], { icon: iconePadrao })
         .addTo(this.map)
         .bindPopup(popUpConteudo);
     });
-
-    setTimeout(() => {
-      this.map.invalidateSize();
-    }, 100);
   }
 }

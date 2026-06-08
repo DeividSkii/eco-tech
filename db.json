@@ -1,0 +1,26 @@
+{
+  "pontos": [
+    {
+      "nome": "Ecoponto Teste Postman",
+      "lat": -12.255,
+      "lng": -38.955,
+      "aceita": "Monitores e Cabos",
+      "id": "EQ36hDp_dZs"
+    },
+    {
+      "nome": "Ecotech Mangabeira",
+      "lat": -12.248,
+      "lng": -38.93,
+      "aceita": "Monitores, Cabos e Fontes",
+      "id": "UQlwgRAffUw"
+    },
+    {
+      "nome": "Coleta Shopping Boulevard",
+      "lat": -12.253,
+      "lng": -38.948,
+      "aceita": "Lixo eletronico geral",
+      "id": "H3pFeLx-qsA"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
