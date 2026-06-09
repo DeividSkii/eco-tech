@@ -42,9 +42,11 @@ export class MapComponent implements AfterViewInit {
   }
 
   private async iniciarMapa() {
-    this.leaflet = await import('leaflet');
+    const moduloLeaflet = await import('leaflet');
+    this.leaflet = moduloLeaflet.default || moduloLeaflet;
     
     const centroDaCidade: L.LatLngExpression = [-12.266, -38.966];
+
 
     this.map = this.leaflet.map(this.mapContainer.nativeElement).setView(centroDaCidade, 13);
     
@@ -53,7 +55,6 @@ export class MapComponent implements AfterViewInit {
       attribution: '© OpenStreetMap contributors © CARTO'
     }).addTo(this.map);
 
-    // Busca os dados na API
     this.buscarPontosDeColeta();
 
     setTimeout(() => {
