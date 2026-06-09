@@ -26,7 +26,7 @@ export class MapComponent implements AfterViewInit {
   private map!: L.Map;
   private leaflet: any;
 
-  private API_URL = 'http://localhost:3000/pontos'; 
+  private API_URL = 'https://6a2756b5a84f9d39e90877fd.mockapi.io/pontos'; 
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
